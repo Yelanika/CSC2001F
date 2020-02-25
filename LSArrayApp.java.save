@@ -1,0 +1,27 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+
+
+public class LSArrayApp
+{
+	public static void main(String[] args)
+	{
+		//Reading data from the datafile and stroing it in an array
+		String[] ls = new String[500];
+		int counter = 0;
+
+		try {
+			Scanner sc = new Scanner(new File("Load_Shedding_All_Areas_Schedule_and_Map.clean.final.txt"));
+			while (sc.hasNext())
+			{
+				ls[counter] = sc.nextLine();
+			}
+			sc.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+}
