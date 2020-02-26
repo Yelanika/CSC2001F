@@ -1,0 +1,134 @@
+import java.io.FileReader;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+
+class LSBaseApp
+{
+	int counter = 0;
+	int counter2 = 0;
+	String[] ls = new String[2976];
+	String[] lsZone = new String[2976];
+	int stage = -1;
+	int day = -1;
+	int startTime = -1;
+	String[] lsData = new String[2];
+	int zone = -1;
+
+	String ExtractAndPrintStageData()
+	{
+		try {
+			Scanner sc = new Scanner(new File("Load_Shedding_All_Areas_Schedule_and_Map.clean.final.txt"));
+			while (sc.hasNext())
+			{
+				ls[counter] = sc.nextLine();
+			//	System.out.println(sc.nextLine());
+				counter = counter +1;
+			}
+			sc.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+/*		for (int i =0;i < 2976; i ++)
+		{
+			System.out.println(ls[i]);
+//			return ls[i];
+		}*/
+		return "";
+	}
+
+	String ExtractAndPrintZoneData()
+	{
+
+		try {
+			Scanner sc2 = new Scanner(new File("Load_Shedding_All_Areas_Schedule_and_Map.clean.txt"));
+			while (sc2.hasNext())
+			{
+				lsZone[counter2] = sc2.nextLine();
+				counter2 = counter2 + 1;
+			}
+			sc2.close();
+		}catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+
+		int count = 0;
+
+		while (count <= counter2)
+		{
+			System.out.println(lsZone[count]);
+			count = count + 1;
+		}
+		return "";
+	}
+
+	String printAreas(int stage,int day, int startTime)
+	{
+
+//		String[] lsData = new String[2];
+		lsData = ls[1].split("_");
+
+//		stage = Integer.parseInt(lsData[0]);
+		day = Integer.parseInt(lsData[1]);
+		startTime = Integer.parseInt(lsData[2]);
+		String tempString = "";
+
+		for (int i =0; i < 2976; i++)
+		{
+			if ((Integer.parseInt(lsData[0]) == stage) && (Integer.parseInt(lsData[1]) == day) && (Integer.parseInt(lsData[2]) == startTime))
+			{
+				tempString = tempString + "\n" + lsZone[i];
+			}
+		}
+		return tempString;
+	}
+
+/*	int getZone()
+	{
+		zone = 
+	}
+
+	int getStage()
+	{
+		stage = Integer.parseInt(lsData[0]);
+		return stage
+	}*/
+
+/*	String Search()
+	{
+
+		String tempString = "";
+
+		for (int i = 0; i < 2976; i++)
+		{
+			if ((Integer.parseInt(lsData[0]) == stage) && (Integer.parseInt(lsData[1]) == day) && (Integer.parseInt(lsData[2]) == startTime))
+			{
+				tempString = lsZone[i];
+			}
+		}
+		return tempString;
+	}*/
+}
+
+public class LSArrayApp extends LSBaseApp
+{
+
+//	String[] ls = new String[2976];
+
+	public static void main(String[] args)
+	{
+
+		LSArrayApp lsObj = new LSArrayApp();
+		lsObj.ExtractAndPrintZoneData();
+
+//		int tempStage = Integer.parseInt(args[0]);
+		int tempDay = Integer.parseInt(args[1]);
+		int tempStartTime = Integer.parseInt(args[2]);
+
+		lsObj.printAreas(
+
+	}
+}
+
