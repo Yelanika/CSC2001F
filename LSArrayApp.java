@@ -47,7 +47,7 @@ class LSBaseApp extends LSDataApp
 	int[] dayArr = new int[2976];
 	int[] timeArr = new int[2976];
 	int[] zoneArr = new int[2976];
-	String[] zones = {"0","0","0","0","0","0","0","0","0"};
+	String[] zones = new String[8];
 
 	String ExtractAndPrintData()
 	{
@@ -70,114 +70,53 @@ class LSBaseApp extends LSDataApp
 //			return ls[i];
 		}*/
 		return "";
-0	}
+	}
 
-/*	String ExtractAndPrintZoneData()
-	{
-
-		try {
-			Scanner sc2 = new Scanner(new File("Load_Shedding_All_Areas_Schedule_and_Map.clean.txt"));
-			while (sc2.hasNext())
-			{
-				lsZone[counter2] = sc2.nextLine();
-				counter2 = counter2 + 1;
-			}
-			sc2.close();
-		}catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-
-
-		int count = 0;
-
-		while (count <= counter2)
-		{
-			System.out.println(lsZone[count]);
-			count = count + 1;
-		}
-		return "";
-	}*/
-
-	String printAreas(int stage,int day, int startTime)
+	String printAllAreas()
 	{
 
 //		String[] lsData = new String[2];
 		for (int i=0; i <2976; i++)
 		{
 			int k = 0;
+			String t ="";
 			lsData = ls[i].split("_");
 
 			stageArr[i] = Integer.parseInt(lsData[0]);
 			dayArr[i] = Integer.parseInt(lsData[1]);
 //			int temp1 = Integer.parseInt(lsData[2]);
 
-			zones = lsData[2].split("\\D");    //D-split at every non-digit
+			zones = lsData[2].split("[\\D\\s]+");    //D-split at every non-digit
 			timeArr[i] = Integer.parseInt(zones[0]);
-			System.out.println(zones[0]);
-//			zoneArr[i] = Integer.parseInt(zones[1]);
-			System.out.println(zones[1]);
 
-/*			//zones = {zones[0],zones[1],"0","0","0","0","0","0","0"};
-			zones[2] = "0";
-			zones[3] = "0";
-			zones[4] = "0";
-			zones[5] = "0";
-			zones[6] = "0";
-			zones[7] = "0";
-			zones[8] = "0";*/
+			t = "stage: "  +  stageArr[i] + "	day: "	+ dayArr[i] +  "	time: " + zones[0] + "h00"; 
+			t = t + "	areas: " + zones[1];
 
-			if (k <=192)
-			{
-				for (int h=0; h <8;h++)
-				{
-					if (zones[h].equals("")   //checks if how many zones you have
-					{
-						zones[h]="0";   //equate no zone with 0
-					}
-				}
+			if (stageArr[i] == 2) {
+				t= t + "  " + zones[2];
 			}
-			} else if (k <= 384)
-//			{
-//				int p=0;
-//				zones = {zones[0],zones[1],zones[2],"0","0","0","0","0","0"}
+			if (stageArr[i] == 3) {
+				t= t+  "  " + zones[2] + "  " + zones[3];
+			}
+//			if (stageArr[i] == 4) {
+//				t=t +  "  " + zones[2] + "  " + zones[3] + "  " + zones[4];
 //			}
-			k = k+1;
-//		 	for (int k =0; k<192; k++)
-//			{
-//				zone[2] = "0";
-//			}
-			System.out.println(zones[2]);
-
-//			int tempcount = 2;
-
-/*			while (tempcount < 8)
-			{
-				for (int k =0; k <192; k++)
-				{
-					zones = {zone[1],0,0,0,0,0,0,0}
-				}
-				tempcount = tempcount +1;
+			if (stageArr[i] == 5) {
+				t=t +  "  " + zones[2] + "  " + zones[3] + "  " + zones[4] + "  " + zones[5];
 			}
-
-
-			if (zones[2] != "")
-			{
-				zoneArr[i] = Integer.parseInt(zones[2]);
-				System.out.println(zones[2]);
+			if (stageArr[i] == 6) {
+				t=t +  "  " + zones[2] + "  " + zones[3] + "  " + zones[4] + "  " + zones[5] + "  " + zones[6];
 			}
+			if (stageArr[i] == 7) {
+				t=t +  "  " + zones[2] + "  " + zones[3] + "  " + zones[4] + "  " + zones[5] + "  " + zones[6] + "  " + zones[7];
+			}
+			if (stageArr[i] == 8) {
+				t=t +  " " + zones[2] + "  " + zones[3] + "  " + zones[4] + "  " + zones[5] + "  " + zones[6] + "  " + zones[7] + "  " + zones[8];
+			}
+			System.out.println(t);
 
-			if (zones[3] != "")
-			{
-				zoneArr[i] = Integer.parseInt(zones[3]);
-				System.out.println(zones[3]);
-			}*/
 
-			Search(stageArr[i],dayArr[i],timeArr[i]);
-		}
-
-		for (int k= 0; k < 192; k++)
-		{
-
+//			Search(stageArr[i],dayArr[i],timeArr[i]);
 		}
 		return "";
 	}
@@ -218,7 +157,7 @@ public class LSArrayApp extends LSBaseApp
 		int tempStartTime = Integer.parseInt(args[2]);
 		System.out.println(tempStartTime);
 
-		lsObj.printAreas(tempStage, tempDay, tempStartTime);
+		lsObj.printAllAreas();
 
 	}
 }
