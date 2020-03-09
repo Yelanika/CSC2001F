@@ -3,17 +3,31 @@
 # 27 March 2017
 
 JAVAC=/usr/bin/javac
+JC = javacJVM = java
+File="Load_Shedding_All_Areas_Schedule_and_Map.clean.final.txt"
 
 .SUFFIXES: .java .class
 
 .java.class:
 	$(JAVAC) $<
 
-classes: BinaryTreeNode.class BinaryTree.class \
-         BTQueueNode.class BTQueue.class \
-         BinarySearchTree.class BinarySearchTreeTest.class
+CLASSES =\
+	BinaryTreeNode.class BinaryTree.class \
+	BTQueueNode.class\
+	BTQueue.class\
+        BinarySearchTree.class\
+	BinarySearchTreeTest.class\
+	LSArrayApp.class\
+	LSBSTApp.class	
 
-default: $(CLASSES)
+MAIN = BinarySearchTreeTest 
+
+default: classes
+
+classes: $(CLASSES:.java=.class)
+
+run:	$(MAIN).class
+	$(JVM)$(MAIN)
 
 clean:
 	rm *.class

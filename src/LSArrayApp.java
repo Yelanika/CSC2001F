@@ -176,31 +176,35 @@ class LSBaseApp extends LSDataApp
 //		return tempString;
 		return "";
 	}
+	
 }
 
 public class LSArrayApp extends LSBaseApp
 {
 
-//	String[] ls = new String[2976];
+	public static LSArrayApp lsObj = new LSArrayApp();
 
 	public static void main(String[] args)
 	{
 
-		LSArrayApp lsObj = new LSArrayApp();
 		lsObj.ExtractData();
 
-		int tempStage = Integer.parseInt(args[0]);
-//		System.out.println(tempStage);
+		if (args.length == 0)
+			lsObj.printAllAreas();
+		else
+		{
+			int tempStage = Integer.parseInt(args[0]);
+			int tempDay = Integer.parseInt(args[1]);
+			int tempStartTime = Integer.parseInt(args[2]);
 
-		int tempDay = Integer.parseInt(args[1]);
-//		System.out.println(tempDay);
+			lsObj.printAreas(tempStage,tempDay,tempStartTime);
+		}
 
-		int tempStartTime = Integer.parseInt(args[2]);
-//		System.out.println(tempStartTime);
+	}
 
-//		lsObj.printAllAreas();
-		lsObj.printAreas(tempStage,tempDay,tempStartTime);
-
+	public static String test(String d)
+	{
+		return lsObj.test(d);
 	}
 }
 

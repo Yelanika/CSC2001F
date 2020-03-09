@@ -42,14 +42,30 @@ public class LSBSTApp extends BinaryTree
 		}catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Everything Works");
+		//System.out.println("Everything Works");
 		return bst;
 
+	}
+
+	public static String test(String d)
+	{
+		return bst.test(d)
 	}
 
 	public static void main(String[] args)
 	{
 		bst = CreateBST();
-		bst.printAllAreas();
+//		bst.printAllAreas();
+	
+		if (args.length == 0)
+			bst.printAllAreas();
+		else
+		{
+			String s = args[0];
+			String d = args[1];
+			String t = args[2];
+			String check = s + " " + d + " " + t;	
+			System.out.println(bst.printAreas(check));
+		}
 	}
 }
